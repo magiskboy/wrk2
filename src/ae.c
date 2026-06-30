@@ -98,10 +98,6 @@ void aeDeleteEventLoop(aeEventLoop *eventLoop) {
     zfree(eventLoop);
 }
 
-void aeStop(aeEventLoop *eventLoop) {
-    eventLoop->stop = 1;
-}
-
 int aeCreateFileEvent(aeEventLoop *eventLoop, int fd, int mask,
         aeFileProc *proc, void *clientData)
 {
