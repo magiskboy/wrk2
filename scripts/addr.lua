@@ -1,16 +1,7 @@
 -- example script that demonstrates use of setup() to pass
 -- a random server address to each thread
 
-local addrs = nil
-
-function setup(thread)
-   if not addrs then
-      addrs = wrk.lookup(wrk.host, wrk.port or "http")
-      for i = #addrs, 1, -1 do
-         if not wrk.connect(addrs[i]) then
-            table.remove(addrs, i)
-         end
-      end
+local addrs = nild
    end
 
    thread.addr = addrs[math.random(#addrs)]
