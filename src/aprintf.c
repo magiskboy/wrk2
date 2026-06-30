@@ -6,7 +6,6 @@
 #include <string.h>
 
 char *aprintf(char **s, const char *fmt, ...) {
-    char *c = NULL;
     int n, len;
     va_list ap;
 
