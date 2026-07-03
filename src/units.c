@@ -22,14 +22,14 @@ units time_units_us = {
 
 units time_units_s = {
     .scale = 60,
-    .base  = "s",
-    .units = { "m", "h", NULL }
+    .base  = "s"
 };
 
 units binary_units = {
     .scale = 1024,
     .base  = "",
     .units = { "K", "M", "G", "T", "P", NULL }
+    .info = "info"
 };
 
 units metric_units = {
