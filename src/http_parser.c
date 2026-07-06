@@ -164,8 +164,6 @@ do {                                                                 \
 
 #define PROXY_CONNECTION "proxy-connection"
 #define CONNECTION "connection"
-#define CONTENT_LENGTH "content-length"
-#define TRANSFER_ENCODING "transfer-encoding"
 #define UPGRADE "upgrade"
 #define CHUNKED "chunked"
 #define KEEP_ALIVE "keep-alive"
