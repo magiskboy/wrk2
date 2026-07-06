@@ -11,7 +11,6 @@ char *aprintf(char **s, const char *fmt, ...) {
 
     va_start(ap, fmt);
     n = vsnprintf(NULL, 0, fmt, ap) + 1;
-    va_end(ap);
 
     len = *s ? strlen(*s) : 0;
 
