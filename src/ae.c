@@ -69,9 +69,6 @@ aeEventLoop *aeCreateEventLoop(int setsize) {
     eventLoop->fired = zmalloc(sizeof(aeFiredEvent)*setsize);
     if (eventLoop->events == NULL || eventLoop->fired == NULL) goto err;
     eventLoop->setsize = setsize;
-    eventLoop->lastTime = time(NULL);
-    eventLoop->timeEventHead = NULL;
-    eventLoop->timeEventNextId = 0;
     eventLoop->stop = 0;
     eventLoop->maxfd = -1;
     eventLoop->beforesleep = NULL;
@@ -85,7 +82,6 @@ aeEventLoop *aeCreateEventLoop(int setsize) {
 err:
     if (eventLoop) {
         zfree(eventLoop->events);
-        zfree(eventLoop->fired);
         zfree(eventLoop);
     }
     return NULL;
