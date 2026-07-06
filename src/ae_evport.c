@@ -87,7 +87,6 @@ static int aeApiCreate(aeEventLoop *eventLoop) {
 
     for (i = 0; i < MAX_EVENT_BATCHSZ; i++) {
         state->pending_fds[i] = -1;
-        state->pending_masks[i] = AE_NONE;
     }
 
     eventLoop->apidata = state;
@@ -129,7 +128,6 @@ static int aeApiAssociate(const char *where, int portfd, int fd, int mask) {
 
     rv = port_associate(portfd, PORT_SOURCE_FD, fd, events,
         (void *)(uintptr_t)mask);
-    err = errno;
 
     if (evport_debug)
         fprintf(stderr, "%d (%s)\n", rv, rv == 0 ? "no error" : strerror(err));
@@ -186,7 +184,6 @@ static void aeApiDelEvent(aeEventLoop *eventLoop, int fd, int mask) {
 
     if (pfd != -1) {
         if (evport_debug)
-            fprintf(stderr, "deleting event from pending fd %d\n", fd);
 
         /*
          * This fd was just returned from aeApiPoll, so it's not currently
