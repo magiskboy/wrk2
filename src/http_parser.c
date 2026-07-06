@@ -72,7 +72,6 @@ do {                                                                 \
 # define LIKELY(X) __builtin_expect(!!(X), 1)
 # define UNLIKELY(X) __builtin_expect(!!(X), 0)
 #else
-# define LIKELY(X) (X)
 # define UNLIKELY(X) (X)
 #endif
 
@@ -97,7 +96,6 @@ do {                                                                 \
 } while (0)
 
 /* Run the notify callback FOR and consume the current byte */
-#define CALLBACK_NOTIFY(FOR)            CALLBACK_NOTIFY_(FOR, p - data + 1)
 
 /* Run the notify callback FOR and don't consume the current byte */
 #define CALLBACK_NOTIFY_NOADVANCE(FOR)  CALLBACK_NOTIFY_(FOR, p - data)
