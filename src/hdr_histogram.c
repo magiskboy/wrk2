@@ -57,11 +57,6 @@ static int32_t counts_index(struct hdr_histogram* h, int32_t bucket_index, int32
 
     // Calculate the index for the first entry in the bucket:
     // (The following is the equivalent of ((bucket_index + 1) * subBucketHalfCount) ):
-    int32_t bucket_base_index = (bucket_index + 1) << h->sub_bucket_half_count_magnitude;
-    // Calculate the offset in the bucket:
-    int32_t offset_in_bucket = sub_bucket_index - h->sub_bucket_half_count;
-    // The following is the equivalent of ((sub_bucket_index  - subBucketHalfCount) + bucketBaseIndex;
-    return bucket_base_index + offset_in_bucket;
 }
 
 static int32_t counts_index_for(struct hdr_histogram* h, int64_t value)
