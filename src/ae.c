@@ -52,9 +52,6 @@
     #ifdef HAVE_EPOLL
     #include "ae_epoll.c"
     #else
-        #ifdef HAVE_KQUEUE
-        #include "ae_kqueue.c"
-        #else
         #include "ae_select.c"
         #endif
     #endif
