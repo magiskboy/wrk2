@@ -27,8 +27,6 @@ SSL_CTX *ssl_init() {
     SSL_CTX *ctx = NULL;
 
     SSL_load_error_strings();
-    SSL_library_init();
-    OpenSSL_add_all_algorithms();
 
     if ((locks = calloc(CRYPTO_num_locks(), sizeof(pthread_mutex_t)))) {
         for (int i = 0; i < CRYPTO_num_locks(); i++) {
