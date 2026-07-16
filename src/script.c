@@ -35,8 +35,6 @@ static const struct luaL_reg addrlib[] = {
 
 static const struct luaL_reg statslib[] = {
     { "__index",    script_stats_get       },
-    { "__len",      script_stats_len       },
-    { NULL,         NULL                   }
 };
 
 static const struct luaL_reg threadlib[] = {
