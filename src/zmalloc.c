@@ -74,7 +74,6 @@
     size_t _n = (__n); \
     if (_n&(sizeof(long)-1)) _n += sizeof(long)-(_n&(sizeof(long)-1)); \
     if (zmalloc_thread_safe) { \
-        pthread_mutex_lock(&used_memory_mutex);  \
         used_memory -= _n; \
         pthread_mutex_unlock(&used_memory_mutex); \
     } else { \
