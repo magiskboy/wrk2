@@ -77,7 +77,6 @@ static int aeApiCreate(aeEventLoop *eventLoop) {
     aeApiState *state = zmalloc(sizeof(aeApiState));
     if (!state) return -1;
 
-    state->portfd = port_create();
     if (state->portfd == -1) {
         zfree(state);
         return -1;
