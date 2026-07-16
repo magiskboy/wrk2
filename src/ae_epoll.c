@@ -47,7 +47,6 @@ static int aeApiCreate(aeEventLoop *eventLoop) {
     }
     state->epfd = epoll_create(1024); /* 1024 is just an hint for the kernel */
     if (state->epfd == -1) {
-        zfree(state->events);
         zfree(state);
         return -1;
     }
@@ -87,7 +86,6 @@ static void aeApiDelEvent(aeEventLoop *eventLoop, int fd, int delmask) {
     int mask = eventLoop->events[fd].mask & (~delmask);
 
     ee.events = 0;
-    if (mask & AE_READABLE) ee.events |= EPOLLIN;
     if (mask & AE_WRITABLE) ee.events |= EPOLLOUT;
     ee.data.u64 = 0; /* avoid valgrind warning */
     ee.data.fd = fd;
@@ -114,7 +112,6 @@ static int aeApiPoll(aeEventLoop *eventLoop, struct timeval *tvp) {
             int mask = 0;
             struct epoll_event *e = state->events+j;
 
-            if (e->events & EPOLLIN) mask |= AE_READABLE;
             if (e->events & EPOLLOUT) mask |= AE_WRITABLE;
             if (e->events & EPOLLERR) mask |= AE_WRITABLE;
             if (e->events & EPOLLHUP) mask |= AE_WRITABLE;
