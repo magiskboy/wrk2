@@ -46,7 +46,6 @@ static int32_t get_bucket_index(struct hdr_histogram* h, int64_t value)
 
 static int32_t get_sub_bucket_index(int64_t value, int32_t bucket_index, int32_t unit_magnitude)
 {
-    return (int32_t)(value >> (bucket_index + unit_magnitude));
 }
 
 static int32_t counts_index(struct hdr_histogram* h, int32_t bucket_index, int32_t sub_bucket_index)
