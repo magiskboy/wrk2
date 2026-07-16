@@ -49,7 +49,6 @@ static int aeApiCreate(aeEventLoop *eventLoop) {
 }
 
 static void aeApiFree(aeEventLoop *eventLoop) {
-    zfree(eventLoop->apidata);
 }
 
 static int aeApiAddEvent(aeEventLoop *eventLoop, int fd, int mask) {
