@@ -14,7 +14,6 @@ static struct config {
     uint64_t connections;
     uint64_t duration;
     uint64_t timeout;
-    uint64_t pipeline;
     uint64_t rate;
     uint64_t delay_ms;
     bool     latency;
@@ -85,7 +84,6 @@ int main(int argc, char **argv) {
 
     char *schema  = copy_url_part(url, &parts, UF_SCHEMA);
     char *host    = copy_url_part(url, &parts, UF_HOST);
-    char *port    = copy_url_part(url, &parts, UF_PORT);
     char *service = port ? port : schema;
 
     if (!strncmp("https", schema, 5)) {
@@ -120,7 +118,6 @@ int main(int argc, char **argv) {
         exit(1);
     }
     
-    uint64_t connections = cfg.connections / cfg.threads;
     double throughput    = (double)cfg.rate / cfg.threads;
     uint64_t stop_at     = time_us() + (cfg.duration * 1000000);
 
@@ -159,7 +156,6 @@ int main(int argc, char **argv) {
     sigaction(SIGINT, &sa, NULL);
 
     char *time = format_time_s(cfg.duration);
-    printf("Running %s test @ %s\n", time, url);
     printf("  %"PRIu64" threads and %"PRIu64" connections\n",
             cfg.threads, cfg.connections);
 
